@@ -39,8 +39,8 @@ var extPresets = {
 };
 //Thanks, Thepuzzlegame!
 
-function createMenu() {
-  $('head').append('<style type="text/css">#scratchystuff { position: absolute; top: 33px; right:' + (data.project.creator == username ? (data.project.isPrivate ? '204': '150') : '207') +'px; z-index: 1000; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; } #scratchystuff > .button { height: 20px; line-height: 20px; margin: 0; display: none; } body.editor #scratchystuff > .button { display: block; } #scratchystuff > .dropdown-menu { top: 22px; } .scratchystuffextlib tr > * { text-align: left; padding-right: 10px; } .scratchystuffextlib tr > *:last-child { padding-right: 0; } .scratchystuffextlib .ui-dialog-title { color: black; }</style>');
+function createButton() {
+  $('head').append('<style type="text/css">#scratchystuffbutton { position: absolute; top: 33px; right:' + (data.project.creator == username ? (data.project.isPrivate ? '204': '150') : '207') +'px; z-index: 1000; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; } #scratchystuffbutton > .button { height: 20px; line-height: 20px; margin: 0; display: none; } body.editor #scratchystuffbutton > .button { display: block; } #scratchystuff > .dropdown-menu { top: 22px; } .scratchystuffextlib tr > * { text-align: left; padding-right: 10px; } .scratchystuffextlib tr > *:last-child { padding-right: 0; } .scratchystuffextlib .ui-dialog-title { color: black; }</style>');
 
   //Scratchy Stuff Extension Library
   var extLibrary = $('<div><table><tbody id="scratchystuffextmenu"><tr><th>Extension</th><th>Author</th></tr></tbody></table></div>'), extTable = $(''),
@@ -63,7 +63,7 @@ function createMenu() {
   });
 
   //Menu
-  $('body').append('<div id="scratchystuff" class="dropdown"><div class="button" data-toggle="dropdown"><span>Scratchy Stuff</span></div><div class="dropdown-menu"><ul id="scratchystuffmenu"></ul></div></div>');
+  $('body').append('<div id="scratchystuffbutton" class="dropdown"><div class="button" data-toggle="dropdown"><span>Scratchy Stuff</span></div><div class="dropdown-menu"><ul id="scratchystuffmenu"></ul></div></div>');
   //Load extension from URL
   var menu = $('#scratchystuffmenu');
   menu.append($('<li>Load extension from URL</li>').click(function() {
@@ -94,15 +94,22 @@ function createMenu() {
   if (data.project.creator == username) menu.append($('<li>Remix project</li>').click(JSremixProject));
 }
 
+function showSettings() {
+  $('.tabs-index > ul > li').removeClass('active');
+  $('.scratchystuffsettings').addClass('active');
+  $('#main-content').text('Coming soon!');
+}
+
 if (username) {
-  if (/^\/projects\/\d+\/$/.test(window.location.pathname)) {
-    createMenu();
+  if (/^\/projects\/\d+\/$/.test(location.pathname)) {
+    createButton();
     //Download
     $('#see-inside').parent().before($('<div class="button"><span>Download</span></div>').click(JSdownloadProject));
     $('#see-inside').parent().css('display', 'inline-block');
   }
-  alert(/^\/accounts\/(password_change|email_change|change_country)\/$/.test(window.location.pathname));
-  if (/^\/accounts\/(password_change|email_change|change_country)\/$/.test(window.location.pathname)) {
-  	$('#tabs-index > ul').append('<li><a href="#scratchystuff">Scratchy Stuff</a></li>');
+  if (/^\/accounts\/(password_change|email_change|change_country)\/$/.test(location.pathname)) {
+  	$('.tabs-index > ul').append('<li class="scratchystuffsettings"><a href="#scratchystuff">Scratchy Stuff</a></li>');
+    if (location.hash == '#scratchystuff') showSettings();
+  	else $(window).on('hashchange', function() { if (location.hash == '#scratchystuff') showSettings(); });
   }
 }
