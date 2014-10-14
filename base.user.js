@@ -1,8 +1,8 @@
 // I called this base.user.js in case this is the main script
 var ScratchUserscript = {
-        MODE_DEV = true, // change to false in the release; use this flag to print data to console for debug, etc
+        MODE_DEV: true, // change to false in the release; use this flag to print data to console for debug, etc
 	_parts: [], // insert urls for parts here
-	_settingsHTML: $(""),
+	_settingsHTML: null,
 	_init: function(){
 		// run init tasks here
 		ScratchUserscript._settingsHTML = $("<div></div>");
