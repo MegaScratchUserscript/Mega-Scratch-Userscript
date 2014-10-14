@@ -1,6 +1,7 @@
 // I called this base.user.js in case this is the main script
 var ScratchUserscript = {
-	_parts: [],
+        MODE_DEV = true, // change to false in the release; use this flag to print data to console for debug, etc
+	_parts: [], // insert urls for parts here
 	_settingsHTML: $(""),
 	_init: function(){
 		// run init tasks here
@@ -13,7 +14,7 @@ var ScratchUserscript = {
 	 * @param settings HTML for the part's settings page, if any
 	 */
 	register: function(name, description, settings){
-		ScratchUserscript._parts.push({name: name, description: description, settings: settings});
+		// add settings gui section
 	},
 	/**
 	 * Gets the page type
@@ -61,4 +62,7 @@ var ScratchUserscript = {
 		return Scratch.INIT_DATA.LOGGED_IN_USER.model ? Scratch.INIT_DATA.LOGGED_IN_USER.model.username : null;
 	}
 };
+
+// append other parts here
+
 $(document).ready(ScratchUserscript._init);
