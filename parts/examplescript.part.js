@@ -1,0 +1,1 @@
+ScratchUserscript.register("Example", "Example", []);
