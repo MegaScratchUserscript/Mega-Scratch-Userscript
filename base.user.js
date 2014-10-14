@@ -1,9 +1,16 @@
 // I called this base.user.js in case this is the main script
 var ScratchUserscript = {
         MODE_DEV: true, // change to false in the release; use this flag to print data to console for debug, etc
-	_parts: [], // insert urls for parts here
+	_parts: ["https://rawgit.com/MegaApuTurkUltra/Mega-Scratch-Userscript/master/parts/examplescript.part.js"], // insert urls for parts here
 	_settingsHTML: null,
 	_init: function(){
+		if(ScratchUserscript.MODE_DEV){ // load parts
+			for(x in ScratchUserscript._parts){
+				var sc = document.createElement("script");
+				sc.src = ScratchUserscript._parts[x];
+				document.head.appendChild(sc);
+			}
+		} // otherwise they are already included (the release will combine everything)
 		// run init tasks here
 		ScratchUserscript._settingsHTML = $("<div></div>");
 	},
