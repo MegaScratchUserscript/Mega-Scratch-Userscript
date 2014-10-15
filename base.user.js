@@ -1,3 +1,4 @@
+// add @require
 // I called this base.user.js in case this is the main script
 var ScratchUserscript = {
         MODE_DEV: true, // change to false in the release; use this flag to print data to console for debug, etc
@@ -20,8 +21,9 @@ var ScratchUserscript = {
 	 * @param description A description
 	 * @param settings HTML for the part's settings page, if any
 	 */
-	register: function(name, description, settings){
+	register: function(name, description, settings, init){
 		// add settings gui section
+		// call the init
 	},
 	/**
 	 * Gets the page type
