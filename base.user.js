@@ -1,18 +1,20 @@
 // ==UserScript==
 // @name		Mega Scratch Userscript (base/bootstrap)
+// @author		MegaScratchUserscript (collab with some Scratch ATers: https://github.com/MegaScratchUserscript/Mega-Scratch-Userscript#-mega-scratch-userscript)
+// @description	A mega userscript with tons of epic uses!
 // @include		http://scratch.mit.edu/*
 // @version		0.1
-// @grant		none
+// @grant		GM_getResourceText
 // @icon		http://blue.gwiddle.org/img/MegaScratchUserscript65.png
-// @require		https://cdn.rawgit.com/MegaScratchUserscript/Mega-Scratch-Userscript/master/parts/examplescript.part.js
-// @require		https://cdn.rawgit.com/MegaScratchUserscript/Mega-Scratch-Userscript/master/resources/extensions.js
+// @resource	part_example1 parts/examplescript.part.js
+// @require		resources/extensions.js
 // ==/UserScript==
 
 // I called this base.user.js in case this is the main script
 var ScratchUserscript = {
         MODE_DEV: true, // change to false in the release; use this flag to print data to console for debug, etc
 	// _parts: [],
-	_settingsHTML: $("<div></div>"),
+	_settingsHTML: $("<div>Settings go here</div>"),
 	_init: function(){
 		/*if(ScratchUserscript.MODE_DEV){ // load parts
 			for(x in ScratchUserscript._parts){
@@ -22,8 +24,12 @@ var ScratchUserscript = {
 			}
 		} // otherwise they are already included (the release will combine everything)
                 */
-		// run init tasks here
-		// ScratchUserscript._settingsHTML.appendTo(derp);
+		if(ScratchUserscript.MODE_DEV){
+			console.log("Scratchuserscript started!");
+		}
+		// Warning: very unsafe! How can we make this better?
+		(eval(GM_getResourceText("part_example1")))(ScratchUserscript);
+		ScratchUserscript._settingsHTML.css("display","none").appendTo(document.body).dialog({autoOpen: false});
 	},
 	/**
 	 * Registers a part of the userscript onto the settings dialog
@@ -31,9 +37,9 @@ var ScratchUserscript = {
 	 * @param description A description
 	 * @param settings HTML for the part's settings page, if any
 	 */
-	register: function(name, description, settings, init){
+	registerPart: function(name, description, settings){
 		// add settings gui section to ScratchUserscript.settingsHTML
-		$(document).ready(init);
+		
 	},
 	/**
 	 * Gets the page type
@@ -82,6 +88,6 @@ var ScratchUserscript = {
 	}
 };
 
-// append other parts here
+window.ScratchUserscript = ScratchUserscript; // make it global for parts
 
 $(document).ready(ScratchUserscript._init);
