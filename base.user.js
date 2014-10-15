@@ -3,6 +3,7 @@
 // @include		http://scratch.mit.edu/*
 // @version		0.1
 // @grant		none
+// @icon		http://blue.gwiddle.org/img/MegaScratchUserscript65.png
 // @require		https://cdn.rawgit.com/MegaScratchUserscript/Mega-Scratch-Userscript/master/parts/examplescript.part.js
 // @require		https://cdn.rawgit.com/MegaScratchUserscript/Mega-Scratch-Userscript/master/resources/extensions.js
 // ==/UserScript==
