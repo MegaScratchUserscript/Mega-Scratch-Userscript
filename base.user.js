@@ -3,7 +3,8 @@
 // @include		http://scratch.mit.edu/*
 // @version		0.1
 // @grant		none
-// @require		https://cdn.rawgit.com/MegaApuTurkUltra/Mega-Scratch-Userscript/master/parts/examplescript.part.js
+// @require		https://cdn.rawgit.com/MegaScratchUserscript/Mega-Scratch-Userscript/master/parts/examplescript.part.js
+// @require		https://cdn.rawgit.com/MegaScratchUserscript/Mega-Scratch-Userscript/master/resources/extensions.js
 // ==/UserScript==
 
 // I called this base.user.js in case this is the main script
