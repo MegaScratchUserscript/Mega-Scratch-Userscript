@@ -1,19 +1,27 @@
-// add @require
+// ==UserScript==
+// @name		Mega Scratch Userscript (base/bootstrap)
+// @include		http://scratch.mit.edu/*
+// @version		0.1
+// @grant		none
+// @require		https://cdn.rawgit.com/MegaApuTurkUltra/Mega-Scratch-Userscript/master/parts/examplescript.part.js
+// ==/UserScript==
+
 // I called this base.user.js in case this is the main script
 var ScratchUserscript = {
         MODE_DEV: true, // change to false in the release; use this flag to print data to console for debug, etc
-	_parts: ["https://rawgit.com/MegaApuTurkUltra/Mega-Scratch-Userscript/master/parts/examplescript.part.js"], // insert urls for parts here
-	_settingsHTML: null,
+	// _parts: [],
+	_settingsHTML: $("<div></div>"),
 	_init: function(){
-		if(ScratchUserscript.MODE_DEV){ // load parts
+		/*if(ScratchUserscript.MODE_DEV){ // load parts
 			for(x in ScratchUserscript._parts){
 				var sc = document.createElement("script");
 				sc.src = ScratchUserscript._parts[x];
 				document.head.appendChild(sc);
 			}
 		} // otherwise they are already included (the release will combine everything)
+                */
 		// run init tasks here
-		ScratchUserscript._settingsHTML = $("<div></div>");
+		// ScratchUserscript._settingsHTML.appendTo(derp);
 	},
 	/**
 	 * Registers a part of the userscript onto the settings dialog
@@ -22,8 +30,8 @@ var ScratchUserscript = {
 	 * @param settings HTML for the part's settings page, if any
 	 */
 	register: function(name, description, settings, init){
-		// add settings gui section
-		// call the init
+		// add settings gui section to ScratchUserscript.settingsHTML
+		$(document).ready(init);
 	},
 	/**
 	 * Gets the page type
