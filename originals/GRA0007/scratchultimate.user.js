@@ -25,5 +25,4 @@ function liveFeaturedProject(jNode) {
     var projID = Scratch.INIT_DATA.PROFILE.featuredProject.id
     var usid = Scratch.INIT_DATA.PROFILE.featuredProject.creator
     $( ".stage" ).append( "<iframe allowtransparency='true' width='282' height='210' src='http://scratch.mit.edu/projects/embed/" + projID + "/?autostart=true' frameborder='0' allowfullscreen=''></iframe>" );
-    $( ".location" ).append( " | <a href='http://scratch.mit.edu/discuss/misc/?mail_to=" + usid + "' title='Send email'> Send email</a>" );
 }
