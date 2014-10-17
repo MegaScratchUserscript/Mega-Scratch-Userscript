@@ -6,7 +6,7 @@
 // @version		0.1
 // @grant		unsafeWindow
 // @icon		http://blue.gwiddle.org/img/MegaScratchUserscript65.png
-// @require	parts/examplescript.part.js
+// @require	parts/examplescript.part.user.js
 // @require		resources/extensions.js
 // ==/UserScript==
 
