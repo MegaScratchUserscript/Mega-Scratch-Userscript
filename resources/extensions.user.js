@@ -1,4 +1,13 @@
-window.extPresets = {
+// ==UserScript==
+// @name		Mega Scratch Userscript (resource: extensions library)
+// @author		MegaScratchUserscript
+// @description	Library of scratch javascript extensions
+// @include		http://scratch.mit.edu/*
+// @version		0.1
+// @grant		unsafeWindow
+// @icon		http://blue.gwiddle.org/img/MegaScratchUserscript65.png
+// ==/UserScript==
+unsafeWindow.extPresets = {
   'Mesh': {url: 'https://raw.githubusercontent.com/bobbybee/mesh-2.0/master/ext.js', author: 'bobbybee'},
   'Scratch Cloud': {url: 'https://dl.dropboxusercontent.com/u/6274273/web/scratchcloud/icon.js', author: 'MathWizz'},
   'Image Stuff': {url: 'http://scratch.cf/extensions/imagestuff.js', author: 'djdolphin'},
