@@ -4,31 +4,26 @@
 // @description	A mega userscript with tons of epic uses!
 // @include		http://scratch.mit.edu/*
 // @version		0.1
-// @grant		GM_getResourceText
+// @grant		unsafeWindow
 // @icon		http://blue.gwiddle.org/img/MegaScratchUserscript65.png
-// @resource	part_example1 parts/examplescript.part.js
+// @require	parts/examplescript.part.js
 // @require		resources/extensions.js
 // ==/UserScript==
 
 // I called this base.user.js in case this is the main script
 var ScratchUserscript = {
         MODE_DEV: true, // change to false in the release; use this flag to print data to console for debug, etc
-	// _parts: [],
+	_parts: ["examplePart"],
 	_settingsHTML: $("<div>Settings go here</div>"),
 	_init: function(){
-		/*if(ScratchUserscript.MODE_DEV){ // load parts
-			for(x in ScratchUserscript._parts){
-				var sc = document.createElement("script");
-				sc.src = ScratchUserscript._parts[x];
-				document.head.appendChild(sc);
+		for(x in ScratchUserscript._parts){
+			if(typeof unsafeWindow.suParts !== "undefined" && typeof unsafeWindow.suParts[ScratchUserscript._parts[x]] !== "undefined"){
+				(unsafeWindow.suParts[ScratchUserscript._parts[x]])(ScratchUserscript);
 			}
-		} // otherwise they are already included (the release will combine everything)
-                */
+		}
 		if(ScratchUserscript.MODE_DEV){
 			console.log("Scratchuserscript started!");
 		}
-		// Warning: very unsafe! How can we make this better?
-		(eval(GM_getResourceText("part_example1")))(ScratchUserscript);
 		ScratchUserscript._settingsHTML.css("display","none").appendTo(document.body).dialog({autoOpen: false});
 	},
 	/**
