@@ -7,7 +7,7 @@
 // @grant		unsafeWindow
 // @icon		http://blue.gwiddle.org/img/MegaScratchUserscript65.png
 // @require	parts/examplescript.part.user.js
-// @require		resources/extensions.js
+// @require		resources/extensions.user.js
 // ==/UserScript==
 
 // I called this base.user.js in case this is the main script
