@@ -11,20 +11,27 @@ They are in this order: $main-color, $main-dark, $box-head-text-color
 
 
 /* links */
-$main-color: #E34BA1;
-$main-dark: #A6246E;
+$main-color: #25B36A;
+$main-dark: #128C4D;
 $box-head-text-color:#fff; /*make sure this is visible over the $main-color*/
 
 .button {
     background-image: -webkit-linear-gradient(top,$main-color,$main-dark) !important;
-    border-width: 0px !important;
+    border-width: 0px;
+}
+.button > span {
+    color:$box-head-text-color;
+    text-shadow:0 1px $main-dark;
+}
+.dropdown .dropdown-menu li:hover {
+    background:$main-color;
+    color:$box-head-text-color;
 }
 .button:hover {
         background-image: -webkit-linear-gradient(top,$main-dark,$main-color) !important;
-        color: white !important;
 }
 ul#tabs a{
-  color: #ffffff !important;
+  color: $box-head-text-color;
 }
 a.right {
   color: $box-head-text-color !important;
@@ -32,8 +39,16 @@ a.right {
 a.right:hover {
   color: #454545 !important;
 }
+.dropdown-menu > li:hover {
+  background:$main-color !important;
+}
 div#pagewrapper a:hover, div#pagewrapper a:active, div#pagewrapper a.black:hover, div#pagewrapper a.black:active {
 	color: $main-dark !important;
+}
+ul#tabs > li:hover > a {
+  color: $main-dark; }
+ul#tabs > li.active > a {
+  color: $box-head-text-color !important;
 }
 span#owner {
     color:white !important;        
@@ -133,3 +148,6 @@ div#pagewrapper .intro .title {
 .dropdown-toggle:hover > .caret {
     margin-top:5px;
     }
+ul#tabs > li:hover > a {
+  color:$main-dark;
+}
