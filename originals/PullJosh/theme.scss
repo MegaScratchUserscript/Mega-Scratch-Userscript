@@ -45,9 +45,9 @@ a.right:hover {
 div#pagewrapper a:hover, div#pagewrapper a:active, div#pagewrapper a.black:hover, div#pagewrapper a.black:active {
 	color: $main-dark !important;
 }
-ul#tabs > li:hover > a {
+ul#tabs > li:hover > a, .tabs-index > ul > li:hover > a {
   color: $main-dark; }
-ul#tabs > li.active > a {
+ul#tabs > li.active > a, .tabs-index > ul > li.active > a {
   color: $box-head-text-color !important;
 }
 span#owner {
@@ -56,6 +56,9 @@ span#owner {
 a#djangobbwrap {
  color:white !important;     
       }
+.notice {
+  color:$box-head-text-color !important; /*This is an element created by the "message filter" userscript. */
+}
 /* search */
 #topnav form.search input {
 	border-radius: 5px !important;
@@ -148,6 +151,6 @@ div#pagewrapper .intro .title {
 .dropdown-toggle:hover > .caret {
     margin-top:5px;
     }
-ul#tabs > li:hover > a {
+ul#tabs > li:hover > a, .tabs-index > ul > li:hover > a {
   color:$main-dark;
 }
