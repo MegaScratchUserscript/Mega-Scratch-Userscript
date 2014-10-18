@@ -154,3 +154,9 @@ div#pagewrapper .intro .title {
 ul#tabs > li:hover > a, .tabs-index > ul > li:hover > a {
   color:$main-dark;
 }
+::selection {
+  background: $main-dark;
+}
+::-moz-selection {
+  background: $main-dark;
+}
