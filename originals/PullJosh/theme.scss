@@ -113,7 +113,7 @@ div#pagewrapper .box {
 	background: $main-color !important;
 	border: 0.5px solid $main-dark !important;
 }
-.box-head h4 {
+.box-head h1, .box-head h2, .box-head h3, .box-head h4, .box-head h5, .box-head h6 {
         color:$box-head-text-color;
         text-shadow:$main-dark 0px 1px 0px;
 }
