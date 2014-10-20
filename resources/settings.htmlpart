@@ -1,0 +1,9 @@
+<table class="msu-settings">
+    <tr>
+        <td class='msu-settings-side-tabs-td'>
+            <ul class="msu-settings-side-tabs">
+			</ul>
+        </td>
+        <td class='msu-settings-content'></td>
+    </tr>
+</table>
