@@ -6,10 +6,8 @@ unsafeWindow.msuParts["forumEnhancer"] = function(ScratchUserscript){
 	var isEnabled = ScratchUserscript.isPartEnabled("Forum Enhancements");
 	
 	sMessages = ["Support!", "Support as per this", "No support", "No support as per this", true];
-	// LATER: Integrate localStorage with ScratchUserscript
-	if(typeof localStorage != 'undefined' && typeof localStorage.sMessages != 'undefined'){
-		sMessages = JSON.parse(localStorage.sMessages);
-	}
+	
+	sMessages = ScratchUserscript.readSetting("forumEnhancer", "sMessages", sMessages);
 	
 	updateChanges = function(){
 		sMessages[0]=$("#supportm").val();
@@ -17,7 +15,7 @@ unsafeWindow.msuParts["forumEnhancer"] = function(ScratchUserscript){
 		sMessages[2]=$("#nsupportm").val();
 		sMessages[3]=$("#nsupporta").val();
 		sMessages[4]=$("#autosub").is(":checked");
-		localStorage.sMessages = JSON.stringify(sMessages);
+		ScratchUserscript.writeSetting("forumEnhancer", "sMessages", sMessages);
 	};
 	
 	// Change these IDs to something more safe, preferably prefixed with msu-

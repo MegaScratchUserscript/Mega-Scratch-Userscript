@@ -12,6 +12,7 @@
 // @require		resources/extensions.js
 // @require		parts/examplescript.part.js
 // @require		parts/scratchforum.part.js
+// @require		parts/scratchtheme.part.js
 // @resource	settingshtml resources/settings.htmlpart
 // @resource	settingscss resources/settings.css
 // ==/UserScript==
@@ -46,6 +47,27 @@ var ScratchUserscript = {
 			console.log("Scratchuserscript started!");
 		}
 	},
+	readSetting: function(partName, settingName, defaultValue){
+		if(typeof localStorage != 'undefined'){
+			var settings = {};
+			if(typeof localStorage.msuSettingsStorage != 'undefined'){
+				settings = JSON.parse(localStorage.msuSettingsStorage);
+			}
+			if(settings.hasOwnProperty(partName+"-"+settingName)){
+				return settings[partName+"-"+settingName];
+			} else return defaultValue;
+		}
+	},
+	writeSetting: function(partName, settingName, settingValue){
+		if(typeof localStorage != 'undefined'){
+			var settings = {};
+			if(typeof localStorage.msuSettingsStorage != 'undefined'){
+				settings = JSON.parse(localStorage.msuSettingsStorage);
+			}
+			settings[partName+"-"+settingName] = settingValue;
+			localStorage.msuSettingsStorage = JSON.stringify(settings);
+		}
+	},
 	/**
 	 * Returns if a part is enabled (as per the settings GUI)
 	 * It's up to parts to call this and check
@@ -72,7 +94,7 @@ var ScratchUserscript = {
 		
 		var qualifiedName = name.replace(/[^a-zA-Z\d]/g, "").toLowerCase();
 		if(ScratchUserscript.MODE_DEV)
-			console.log("Part registered name="+name+" cssName="+qualifiedName);
+			console.log("Part registered name="+name+" qualifiedName="+qualifiedName);
 		var li = $("<li></li>");
 		var isEnabled = ScratchUserscript.isPartEnabled(name);
 		li.append($("<input data-ischeck='yup' type='checkbox' title='Enable this' id='enable-" + qualifiedName + "' data-for='" + qualifiedName + "' />")
