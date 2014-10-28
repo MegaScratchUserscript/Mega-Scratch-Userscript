@@ -7,7 +7,9 @@
 // @grant		unsafeWindow
 // @grant		GM_getResourceText
 // @grant		GM_addStyle
-// @icon		http://blue.gwiddle.org/img/MegaScratchUserscript65.png
+// @icon		resources/icon.png
+// @require		https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
+// @require		https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js
 // @require		resources/waitForKeyElements.js
 // @require		resources/msuinit.js
 // @require		resources/extensions.js
@@ -174,7 +176,7 @@ var ScratchUserscript = {
 	 * @return The username of the currently logged in user, or null if not logged in
 	 */
 	getUsername: function(){
-		return Scratch.INIT_DATA.LOGGED_IN_USER.model ? Scratch.INIT_DATA.LOGGED_IN_USER.model.username : null;
+		return unsafeWindow.Scratch.INIT_DATA.LOGGED_IN_USER.model ? unsafeWindow.Scratch.INIT_DATA.LOGGED_IN_USER.model.username : null;
 	}
 };
 

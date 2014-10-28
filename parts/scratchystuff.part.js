@@ -48,7 +48,7 @@ unsafeWindow.msuParts["scratchyStuff"] = function(ScratchUserscript){
 	var extPresets = unsafeWindow.extPresets;
 	
 	function createButton() {
-		$('head').append('<style type="text/css">#scratchystuffbutton { position: absolute; top: 33px; right:' + (data.project.creator == username ? (data.project.isPrivate ? '204': '150') : '207') +'px; z-index: 1000; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; } #scratchystuffbutton > .button { height: 20px; line-height: 20px; margin: 0; display: none; } body.editor #scratchystuffbutton > .button { display: block; } #scratchystuff > .dropdown-menu { top: 22px; } .scratchystuffextlib tr > * { text-align: left; padding-right: 10px; } .scratchystuffextlib tr > *:last-child { padding-right: 0; } .scratchystuffextlib .ui-dialog-title { color: black; }</style>');
+		$('head').append('<style type="text/css">#scratchystuffbutton { position: absolute; top: 33px; right:' + (unsafeWindow.data.project.creator == username ? (unsafeWindow.data.project.isPrivate ? '204': '150') : '207') +'px; z-index: 1000; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; } #scratchystuffbutton > .button { height: 20px; line-height: 20px; margin: 0; display: none; } body.editor #scratchystuffbutton > .button { display: block; } #scratchystuff > .dropdown-menu { top: 22px; } .scratchystuffextlib tr > * { text-align: left; padding-right: 10px; } .scratchystuffextlib tr > *:last-child { padding-right: 0; } .scratchystuffextlib .ui-dialog-title { color: black; }</style>');
 		
 		//Scratchy Stuff Extension Library
 		var extLibrary = $('<div><table><tbody id="scratchystuffextmenu"><tr><th>Extension</th><th>Author</th></tr></tbody></table></div>'), extTable = $(''),
@@ -103,7 +103,7 @@ unsafeWindow.msuParts["scratchyStuff"] = function(ScratchUserscript){
 			}));
 		}
 		//Self-remix
-		if (data.project.creator == username && settings.selfRemix) menu.append($('<li>Self-remix project</li>').click(JSremixProject));
+		if (unsafeWindow.data.project.creator == username && settings.selfRemix) menu.append($('<li>Self-remix project</li>').click(JSremixProject));
 	}
 
 	if (username) {
