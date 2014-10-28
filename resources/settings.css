@@ -1,3 +1,7 @@
+#msu-settings-dialog {
+	overflow: hidden;
+}
+
 .msu-settings {
     border-spacing: 0px;
     width: 100%;
@@ -23,6 +27,7 @@
     border-right: none;
     padding: 10px;
     margin-right: 0;
+	margin-bottom: 0;
     transition: background 0.5s;
 }
 .msu-settings-side-tabs li:hover, .msu-settings-side-tabs li.sel {

@@ -8,11 +8,13 @@
 // @grant		GM_getResourceText
 // @grant		GM_addStyle
 // @icon		http://blue.gwiddle.org/img/MegaScratchUserscript65.png
+// @require		resources/waitForKeyElements.js
 // @require		resources/msuinit.js
 // @require		resources/extensions.js
-// @require		parts/examplescript.part.js
 // @require		parts/scratchforum.part.js
 // @require		parts/scratchtheme.part.js
+// @require		parts/scratchystuff.part.js
+// @require		parts/feed.part.js
 // @resource	settingshtml resources/settings.htmlpart
 // @resource	settingscss resources/settings.css
 // ==/UserScript==
@@ -30,6 +32,7 @@ var ScratchUserscript = {
 			ScratchUserscript._partsEnabled = JSON.parse(localStorage.msuPartsEnabled);
 		}
 		ScratchUserscript._settingsHTML.css("display","none").appendTo(document.body).dialog({autoOpen: false, width: 800, height: 400});
+		$("#msu-settings-dialog").parent().append('<iframe class="iframeshim" frameborder="0" scrolling="no">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</iframe>');
 		ScratchUserscript._settingsHTML.html(GM_getResourceText("settingshtml"));
 		GM_addStyle(GM_getResourceText("settingscss"));
 		var openSettings = $("<a href='javascript:void(0)'><acronym title='Mega Scratch Userscript'>MSU</acronym> Settings</a>");
