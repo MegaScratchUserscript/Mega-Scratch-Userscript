@@ -57,7 +57,7 @@ unsafeWindow.msuParts["scratchyStuff"] = function(ScratchUserscript){
 			// wow that's some messy code
 			extMenu.append($('<tr></tr>')
 				.append($('<td></td>').append($('<a></a>').text(extName).attr('data-extension', ext.url).click(function() {
-					ScratchExtensions.loadExternalJS($(this).attr('data-extension')); 
+					unsafeWindow.ScratchExtensions.loadExternalJS($(this).attr('data-extension')); 
 				}))).append($('<td></td>').append($('<a target="_blank"></a>').text(ext.author).attr('href', '/users/' + ext.author + '/')))
 			);
 		});
@@ -78,7 +78,7 @@ unsafeWindow.msuParts["scratchyStuff"] = function(ScratchUserscript){
 			menu.append($('<li>Load extension from URL</li>').click(function() {
 				var extensionURL = prompt('What URL?');
 				if (!extensionURL) return;
-				ScratchExtensions.loadExternalJS(extensionURL);
+				unsafeWindow.ScratchExtensions.loadExternalJS(extensionURL);
 			}));
 			//Load extension from library
 			menu.append($('<li>SS Extension Library</li>').click(function() {
@@ -103,7 +103,7 @@ unsafeWindow.msuParts["scratchyStuff"] = function(ScratchUserscript){
 			}));
 		}
 		//Self-remix
-		if (unsafeWindow.data.project.creator == username && settings.selfRemix) menu.append($('<li>Self-remix project</li>').click(JSremixProject));
+		if (unsafeWindow.data.project.creator == username && settings.selfRemix) menu.append($('<li>Self-remix project</li>').click(unsafeWindow.JSremixProject));
 	}
 
 	if (username) {
@@ -111,7 +111,7 @@ unsafeWindow.msuParts["scratchyStuff"] = function(ScratchUserscript){
 			createButton();
 			//Download
 			if(settings.download){
-				$('#see-inside').parent().before($('<div class="button"><span>Download</span></div>').click(JSdownloadProject));
+				$('#see-inside').parent().before($('<div class="button"><span>Download</span></div>').click(unsafeWindow.JSdownloadProject));
 				$('#see-inside').parent().css('display', 'inline-block');
 			}
 		}
