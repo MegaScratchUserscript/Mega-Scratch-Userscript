@@ -5,7 +5,7 @@ unsafeWindow.msuParts["themeEffects"] = function(ScratchUserscript){
 
 	var isEnabled = ScratchUserscript.isPartEnabled("themeEffects");
 	
-	var settings = {scrollEffect: true, background: true, bgUrl:"http://i.imgur.com/ra8F49A.jpg"};
+	var settings = {scrollEffect: false, background: false, bgUrl:"http://i.imgur.com/ra8F49A.jpg"};
 	settings = ScratchUserscript.readSetting("themeEffects", "settings", settings);
 	
 	updateChanges = function(){
