@@ -29,7 +29,7 @@ var ScratchUserscript = {
 	_init: function(){
 		if(typeof localStorage != 'undefined'){
 			if(typeof localStorage.msuPartsEnabled == 'undefined'){
-				localStorage.msuPartsEnabled = "{}";
+				localStorage.msuPartsEnabled = "{themeeffects:false}";
 			}
 			ScratchUserscript._partsEnabled = JSON.parse(localStorage.msuPartsEnabled);
 		}
