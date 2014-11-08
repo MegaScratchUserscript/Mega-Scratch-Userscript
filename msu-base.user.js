@@ -136,7 +136,7 @@ var ScratchUserscript = {
 	/**
 	 * Gets the page type
 	 * @return The type, in the form of a JSON object:
-	 *		type: either project, studio, messages, mystuff, settings, forum, or unknown
+	 *		type: either project, studio, messages, mystuff, settings, forum, profile, or unknown
 	 *		subtype: in forums, either section, topic, or null
 	 *  	id: the forum topic id, project id, studio id, etc
 	 */
@@ -149,6 +149,10 @@ var ScratchUserscript = {
 		if (/^\/studios\/\d+\/$/.test(location.pathname)){
 			obj.type = "studio";
 			obj.id = parseInt(/^\/studios\/(\d+)\/$/.exec(location.pathname)[1]);
+		}
+		if (/^\/users\/\d+\/$/.test(location.pathname)){
+			obj.type = "profile";
+			obj.id = parseInt(/^\/users\/(\d+)\/$/.exec(location.pathname)[1]);
 		}
 		if(/^\/discuss\//.test(location.pathname)){
 			obj.type = "forum";
