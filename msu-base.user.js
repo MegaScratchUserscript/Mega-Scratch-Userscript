@@ -43,9 +43,9 @@ var ScratchUserscript = {
 		});
 		$("<li></li>").append(openSettings).insertBefore($(".user-nav .logout"));
 		
-		for(x in unsafeWindow.msuParts){
-			if(typeof unsafeWindow.msuParts[x] !== "undefined"){
-				(unsafeWindow.msuParts[x])(ScratchUserscript);
+		for(x in msuParts){
+			if(typeof msuParts[x] !== "undefined"){
+				(msuParts[x])(ScratchUserscript);
 			}
 		}
 		if(ScratchUserscript.MODE_DEV){

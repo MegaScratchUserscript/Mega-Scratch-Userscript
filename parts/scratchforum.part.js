@@ -1,4 +1,4 @@
-unsafeWindow.msuParts["forumEnhancer"] = function(ScratchUserscript){
+msuParts["forumEnhancer"] = function(ScratchUserscript){
 	var dlg = $("<div></div>");
 	
 	ScratchUserscript.registerPart("Forum Enhancements", "Adds support/no support buttons to forums posts and adds some other enhancements.", dlg);

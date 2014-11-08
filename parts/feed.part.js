@@ -1,4 +1,4 @@
-unsafeWindow.msuParts["feed"] = function(ScratchUserscript){
+msuParts["feed"] = function(ScratchUserscript){
 	var settingsDlg = $("<div></div>");
 	
 	ScratchUserscript.registerPart("Feed", "Hides items from your front page feed.", settingsDlg);

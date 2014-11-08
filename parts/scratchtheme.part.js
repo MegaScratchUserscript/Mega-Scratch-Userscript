@@ -1,4 +1,4 @@
-unsafeWindow.msuParts["themeEffects"] = function(ScratchUserscript){
+msuParts["themeEffects"] = function(ScratchUserscript){
 	var settingsDlg = $("<div></div>");
 	
 	ScratchUserscript.registerPart("Theme Effects", "Adds 3D scrolling and a parallax background.", settingsDlg);

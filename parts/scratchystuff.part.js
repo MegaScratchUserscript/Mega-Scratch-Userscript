@@ -1,4 +1,4 @@
-unsafeWindow.msuParts["scratchyStuff"] = function(ScratchUserscript){
+msuParts["scratchyStuff"] = function(ScratchUserscript){
 	var settingsDlg = $("<div></div>");
 	
 	ScratchUserscript.registerPart("Scratchy Stuff", "Adds more features to projects.", settingsDlg);
