@@ -3,7 +3,7 @@
 // @author		MegaScratchUserscript (collab with some Scratch ATers: https://github.com/MegaScratchUserscript/Mega-Scratch-Userscript#-mega-scratch-userscript)
 // @description	A mega userscript with tons of epic uses!
 // @include		http://scratch.mit.edu/*
-// @version		0.2
+// @version		0.2.1
 // @grant		unsafeWindow
 // @grant		GM_getResourceText
 // @grant		GM_addStyle
@@ -34,7 +34,7 @@ var ScratchUserscript = {
 			}
 			ScratchUserscript._partsEnabled = JSON.parse(localStorage.msuPartsEnabled);
 		}
-		ScratchUserscript._settingsHTML.css("display","none").appendTo(document.body).dialog({autoOpen: false, width: 800, height: 400});
+		ScratchUserscript._settingsHTML.css("display","none").appendTo(document.body).dialog({dialogClass:"jqui-modal", autoOpen: false, width: 800, height: 400});
 		$("#msu-settings-dialog").parent().append('<iframe class="iframeshim" frameborder="0" scrolling="no">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</iframe>');
 		ScratchUserscript._settingsHTML.html(GM_getResourceText("settingshtml"));
 		GM_addStyle(GM_getResourceText("settingscss"));
