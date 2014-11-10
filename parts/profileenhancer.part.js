@@ -116,7 +116,7 @@ msuParts["profileEnhancer"] = function (ScratchUserscript) {
 		if (settings.liveProject) {
 			//Make project live
 			$("#featured-project").remove();
-			var projID = Scratch.INIT_DATA.PROFILE.featuredProject.id;
+			var projID = unsafeWindow.Scratch.INIT_DATA.PROFILE.featuredProject.id;
 			$(".stage").append("<iframe allowtransparency='true' width='282' height='210' src='http://scratch.mit.edu/projects/embed/" + projID + "/?autostart=true' frameborder='0' allowfullscreen=''></iframe>");
 		}
 	}
