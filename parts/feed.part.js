@@ -1,9 +1,9 @@
-msuParts["feed"] = function(ScratchUserscript){
+msuParts["feedfilter"] = function(ScratchUserscript){
 	var settingsDlg = $("<div></div>");
 	
-	ScratchUserscript.registerPart("Feed", "Hides items from your front page feed.", settingsDlg);
+	ScratchUserscript.registerPart("Feed Filter", "Hides items from your front page feed.", settingsDlg);
 
-	var isEnabled = ScratchUserscript.isPartEnabled("feed");
+	var isEnabled = ScratchUserscript.isPartEnabled("feedfilter");
 	
 	var settings = {
 		love: true,
@@ -25,7 +25,7 @@ msuParts["feed"] = function(ScratchUserscript){
 		share: "Project Shares From Followers"
 	};
 	
-	settings = ScratchUserscript.readSetting("feed", "settings", settings);
+	settings = ScratchUserscript.readSetting("feedfilter", "settings", settings);
 	
 	updateChanges = function(){
 		for(x in settings){
@@ -35,7 +35,7 @@ msuParts["feed"] = function(ScratchUserscript){
 				settings[x] = false;
 			}
 		}
-		ScratchUserscript.writeSetting("feed", "settings", settings);
+		ScratchUserscript.writeSetting("feedfilter", "settings", settings);
 	};
 	
 	settingsDlg.append("<b>Show the following messages in the feed:</b><br/>");
