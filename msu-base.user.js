@@ -151,9 +151,9 @@ var ScratchUserscript = {
 			obj.type = "studio";
 			obj.id = parseInt(/^\/studios\/(\d+)\/$/.exec(location.pathname)[1]);
 		}
-		if (/^\/users\/\d+\/$/.test(location.pathname)){
+		if (/^\/users\/[a-zA-Z0-9\-_]+\/$/.test(location.pathname)){
 			obj.type = "profile";
-			obj.id = parseInt(/^\/users\/(\d+)\/$/.exec(location.pathname)[1]);
+			obj.id = /^\/users\/([a-zA-Z0-9\-_]+)\/$/.exec(location.pathname)[1];
 		}
 		if(/^\/discuss\//.test(location.pathname)){
 			obj.type = "forum";
