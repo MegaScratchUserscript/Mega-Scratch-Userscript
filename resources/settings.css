@@ -1,3 +1,13 @@
+.msu-settings #spacer {
+	height: 1em;
+}
+
+.msu-settings-note {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+}
+
 #msu-settings-dialog {
 	overflow: hidden;
 }

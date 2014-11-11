@@ -6,4 +6,9 @@
         </td>
         <td class='msu-settings-content'></td>
     </tr>
+	<tr>
+		<td colspan="2" id="spacer">
+		</td>
+	</tr>
 </table>
+<div class="msu-settings-note"><i>Note: Settings save automatically, but the page must be refreshed for changes to take effect.</i></div>
