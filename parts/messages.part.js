@@ -89,11 +89,11 @@ msuParts["messagefilter"] = function (ScratchUserscript) {
 		console.log('Comments hidden');
 	}
 	if (hideItem("Reply")) {
-		$("li:contains('replied to your comment on')").css("display", "none");
+		$("li:contains('replied to your comment')").css("display", "none");
 		console.log('Replies hidden');
 	}
 	if (hideItem("Follow")) {
-		$("li:contains('is now following you')").css("display", "none");
+		$("li:contains('is now following you'), li:contains('are now following you')").css("display", "none");
 		console.log('Follows hidden');
 	}
 	if (hideItem("StudioUpdate")) {

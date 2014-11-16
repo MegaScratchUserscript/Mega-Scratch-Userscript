@@ -4,7 +4,7 @@
 // @description	A mega userscript with tons of epic uses!
 // @include		http://scratch.mit.edu/*
 // @include		http://wiki.scratch.mit.edu/*
-// @version		1.0.1
+// @version		1.1.0
 // @grant		unsafeWindow
 // @grant		GM_getResourceText
 // @grant		GM_addStyle
@@ -19,6 +19,7 @@
 // @require		resources/extensions.js
 // @require		parts/scratchforum.part.js
 // @require		parts/colortheme.part.js
+// @require		parts/notification-bootcamp.part.js
 // @require		parts/scratchystuff.part.js
 // @require		parts/feed.part.js
 // @require		parts/messages.part.js
