@@ -41,6 +41,7 @@ msuParts["colortheme"] = function(ScratchUserscript){
 	};
 	
 	settings = ScratchUserscript.readSetting("colortheme", "settings", settings);
+	if(ScratchUserscript.MODE_DEV) console.log(settings);
 	custom = ScratchUserscript.readSetting("colortheme", "custom", custom);
 	
 	updateChanges = function(){

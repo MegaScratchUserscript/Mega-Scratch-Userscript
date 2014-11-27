@@ -63,20 +63,20 @@ div#footer a {
 	font-weight: bold;
 }
 /* top nav */
-div#pagewrapper #topnav {
+div#pagewrapper #topnav, header {
     background-color: $main-color !important;
 }
 div#pagewrapper #topnav  a{
 	color: #FFFFFF !important;
 }
-div#pagewrapper #topnav ul.site-nav li, div#pagewrapper #topnav ul.site-nav li.last, div#pagewrapper #topnav ul.account-nav>li {
+div#pagewrapper #topnav ul.site-nav li, div#pagewrapper #topnav ul.site-nav li.last, div#pagewrapper #topnav ul.account-nav>li, ul.left li, ul.left li a {
 	border: none !important;
 }
 /* hover */
-div#pagewrapper #topnav ul.account-nav>li.sign-in:hover, div#pagewrapper #topnav ul.account-nav>li.sign-in.open, div#pagewrapper ul.site-nav li:hover, #topnav ul.account-nav.logged-in li:hover {
+div#pagewrapper #topnav ul.account-nav>li.sign-in:hover, div#pagewrapper #topnav ul.account-nav>li.sign-in.open, div#pagewrapper ul.site-nav li:hover, #topnav ul.account-nav.logged-in li:hover, ul.left li a:hover {
 	background: $main-dark !important;
 }
-div#pagewrapper #topnav ul.account-nav>li.join-scratch:hover {
+div#pagewrapper #topnav ul.account-nav>li.join-scratch:hover,  {
 	background: $main-dark !important;
 }
 /* sign in box */
@@ -89,16 +89,22 @@ div#pagewrapper #topnav ul.account-nav .sign-in .popover {
 	background-color: $main-dark !important;
 	border-color: #343434 !important;
 }
-div#pagewrapper #topnav ul.account-nav .logged-in-user .dropdown-menu {
+div#pagewrapper #topnav ul.account-nav .logged-in-user .dropdown-menu, #userfctdropdown {
 	background-color: $main-dark !important;
 }
 div#pagewrapper #topnav ul.account-nav ul.user-nav li.logout.divider {
 	border-top: 2px solid #343434 !important;
 }
-div#pagewrapper #topnav ul.account-nav .logged-in-user.dropdown.open {
-background-color: $main-dark !important;
+#userfcttoggle, header li.last, header li a {
+  border:0px !important;
 }
-.blockpost .box-head {
+#userfcttoggle a:hover, #userfctdropdown li a:hover {
+  background:$main-dark !important;
+}
+div#pagewrapper #topnav ul.account-nav .logged-in-user.dropdown.open, #userfcttoggle.open, #userfcttoggle:hover {
+  background-color: $main-dark !important;
+}
+.blockpost .box-head, article.box h1 {
   border-top:0px;
 }
 /* video */
@@ -110,13 +116,34 @@ div#pagewrapper li {
 	transition: all .5s !important;
 }
 /* box tops */
-div#pagewrapper .box {
+div#pagewrapper .box, .box h1 {
 	background: $main-color !important;
 	border: 0.5px solid $main-dark !important;
 }
-.box-head h1, .box-head h2, .box-head h3, .box-head h4, .box-head h5, .box-head h6 {
-        color:$box-head-text-color;
-        text-shadow:$main-dark 0px 1px 0px;
+.box h1 {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.mw-headline {
+  color:$main-color;
+  text-shadow:none;
+}
+.box-head h1, .box-head h2, .box-head h3, .box-head h4, .box-head h5, .box-head h6, h1, h2, h3, h4, h5, h6 {
+  color:$box-head-text-color;
+  text-shadow:$main-dark 0px 1px 0px;
+}
+footer {
+  background-color: #343434 !important;
+  color: white !important;
+  opacity: 0.8;
+  box-shadow: none;
+}
+footer ul a {
+  color:white !important;
+}
+footer li h4 {
+  color:#666 !important;
+  text-shadow:none;
 }
 /* title */
 div#pagewrapper .intro .title {

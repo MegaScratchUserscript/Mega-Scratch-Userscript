@@ -8,6 +8,8 @@
 // @grant		unsafeWindow
 // @grant		GM_getResourceText
 // @grant		GM_addStyle
+// @grant		GM_getValue
+// @grant		GM_setValue
 // @icon		https://cdn.rawgit.com/MegaScratchUserscript/Mega-Scratch-Userscript/master/resources/icon.png
 // @resource	settingshtml resources/settings.htmlpart
 // @resource	settingscss resources/settings.css
@@ -41,6 +43,13 @@ var ScratchUserscript = {
 			}
 			ScratchUserscript._partsEnabled = JSON.parse(localStorage.msuPartsEnabled);
 		}
+		
+		if(location.hostname=="wiki.scratch.mit.edu"){
+			if(ScratchUserscript.MODE_DEV) console.log("MSU is on the wiki; loading themes only");
+			(msuParts['colortheme'])(ScratchUserscript);
+			return;
+		}
+		
 		ScratchUserscript._settingsHTML.css("display","none").appendTo(document.body).dialog({dialogClass:"jqui-modal", autoOpen: false, width: 800, height: 550});
 		$("#msu-settings-dialog").parent().append('<iframe class="iframeshim" frameborder="0" scrolling="no">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</iframe>');
 		ScratchUserscript._settingsHTML.html(GM_getResourceText("settingshtml"));
@@ -61,6 +70,12 @@ var ScratchUserscript = {
 		}
 	},
 	readSetting: function(partName, settingName, defaultValue){
+		if(location.hostname=="wiki.scratch.mit.edu"){
+			var settings = JSON.parse(GM_getValue("msuSettingsStorage", "{}"));
+			if(settings.hasOwnProperty(partName+"-"+settingName)){
+				return settings[partName+"-"+settingName];
+			} else return defaultValue;
+		}
 		if(typeof localStorage != 'undefined'){
 			var settings = {};
 			if(typeof localStorage.msuSettingsStorage != 'undefined'){
@@ -79,6 +94,7 @@ var ScratchUserscript = {
 			}
 			settings[partName+"-"+settingName] = settingValue;
 			localStorage.msuSettingsStorage = JSON.stringify(settings);
+			GM_setValue("msuSettingsStorage", JSON.stringify(settings));
 		}
 	},
 	/**

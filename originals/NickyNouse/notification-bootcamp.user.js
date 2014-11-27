@@ -1,26 +1,37 @@
 // ==UserScript==
 // @name         Notification Bootcamp
-// @version      1
+// @version      1.1
 // @description  Groups Scratch messages by type, for those moments when you're being bombarded with notifications and can't tell which ones need your attention.
 // @author       NickyNouse
 // @match        http://scratch.mit.edu/messages*
 // @grant        none
 // ==/UserScript==
-
+ 
 ///////CSS first
-var css1 = "<style>#notification-list li {padding: .7em 5px; margin: 0 0 2px 10px !important;} .unread{border-radius: 5px; background-color: #eed;}";
-var css2 = ".notarrow {position: relative; right: 20px; color: #888; cursor: default; transition: all .4s; clear: both; display: inline-block; width: 0;}";
-var css3 = ".nshow .notarrow {-webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg);-o-transform: rotate(90deg); transform: rotate(90deg);}";
-var css4 = ".notshowhide {margin-left: 11px !important; border-left: 1px solid #ccb; padding-left: 2px;";
-var css5 = "display: none;} .unreadcount {float: right; color: #ccb; background: white; margin: 10px 10px 0 5px; padding: 0 5px; border-radius: 3px;";
-var css6 = "font-weight: bold;} #notification-list {margin-top: 20px} #notification-list .notshowhide li {margin-left: 0 !important;}</style>";
-var notStyle = $(css1 + css2 + css3 + css4 + css5 + css6);
+var notStyle = "<style>"
+            + "#notification-list li {padding: .7em 5px; margin: 0 0 2px 10px !important;}"
+            + ".unread{border-radius: 5px; background-color: #eed;}"
+            + ".notarrow {position: relative; right: 20px; color: #888; cursor: default; transition: all .4s; clear: both; display: inline-block; width: 0;}"
+            + ".nshow .notarrow {-webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg);-o-transform: rotate(90deg); transform: rotate(90deg);}"
+            + ".notshowhide {margin-left: 11px !important; border-left: 1px solid #ccb; padding-left: 2px; display: none;}"
+            + ".unreadcount {float: right; color: #ccb; background: white; margin: 10px 10px 0 5px; padding: 0 5px; border-radius: 3px; font-weight: bold;}"
+            + "#notification-list {margin-top: 20px}"
+            + "#notification-list .notshowhide li {margin-left: 0 !important;}"
+            + "</style>";
 $('head').append(notStyle);
-
+ 
 ///////now JS
+var notNewMessagesOnly = true; //when on, only sort unread messages. When off, sort all messages.
+ 
 var notArray = new Array();
-$('#notification-list li').each(function( index, value ) {
-    
+var notlist;
+if(notNewMessagesOnly) {
+    notlist = '#notification-list .unread li';
+} else {
+    notlist = '#notification-list li';
+}
+ 
+$(notlist).each(function( index, value ) {
     var notTime = $(value).find('.time');
     var dateTCL = $(value).parent().children().first().text();
     dateTCL = dateTCL.substring(0, 1).toLowerCase() + dateTCL.substring(1);
@@ -51,7 +62,11 @@ $('#notification-list li').each(function( index, value ) {
             notGroupExists = true;
             var notObj = new Object();
             notObj.html = $(value);
-    		notObj.class = $(value).parent().attr('class');
+            if(notNewMessagesOnly) {
+                notObj.class = 'unread';
+            } else {
+    			notObj.class = $(value).parent().attr('class');
+            }
             if(notObj.class == 'unread') {
                 notArray[i2].nots.unreadcount++;
             }
@@ -65,15 +80,29 @@ $('#notification-list li').each(function( index, value ) {
         notGroup.nots = new Array();
         notGroup.nots[0] = new Object();
         notGroup.nots[0].html = $(value);
-    	notGroup.nots[0].class = $(value).parent().attr('class');
-        notGroup.nots.unreadcount = (notGroup.nots[0].class == 'unread' ? 1 : 0);
+        if(notNewMessagesOnly) {
+            notGroup.nots[0].class = 'unread';
+            notGroup.nots.unreadcount = 1;
+        } else {
+            notGroup.nots[0].class = $(value).parent().attr('class');
+            notGroup.nots.unreadcount = (notGroup.nots[0].class == 'unread' ? 1 : 0);
+        }
         notArray.push(notGroup);
     }
 });
-
-var notElement = $('<ul id="grouper-container"/>');
-
-for(i = 0; i < notArray.length - 1; i++) { //there's an extra notif in there for some reason that's like "please be respectful when commenting"
+ 
+var notElement = $('<ul id="notContainer"/>');
+ 
+var notForLength;
+if(notNewMessagesOnly) {
+    notForLength = notArray.length;
+    if(notForLength > 0) {
+        notElement.append('<h3>New</h3>');
+    }
+} else {
+    notForLength = notArray.length - 1;
+}
+for(i = 0; i < notForLength; i++) { //there's an extra notif in there for some reason that's like "please be respectful when commenting"
     if(notArray[i].nots.length == 1){
         notArray[i].nots[0].html.addClass(notArray[i].nots[0].class);
     	notElement.append(notArray[i].nots[0].html);
@@ -97,14 +126,20 @@ for(i = 0; i < notArray.length - 1; i++) { //there's an extra notif in there for
             list.append(notArray[i].nots[i2].html);
         }
         showhide.append(list);
-        if(notArray[i].nots.unreadcount > 0) {showhide.prepend('<span class="unreadcount">' + notArray[i].nots.unreadcount + '</span>');}
+        if(!notNewMessagesOnly && notArray[i].nots.unreadcount > 0) {showhide.prepend('<span class="unreadcount">' + notArray[i].nots.unreadcount + '</span>');}
         notElement.append(showhide);
     }
 }
-$('#notification-list').empty().append(notElement);
-if(document.URL.match(/\/\d+/) == null || document.URL.match(/\/\d+/)[0] == '/0') {
-    $('#message-nav-links').remove();
-	$('#notification-list').append($('<div id="message-nav-links"><a class="older" href="/messages/1">&laquo Older messages</a></div>'));
+ 
+if(notNewMessagesOnly) {
+	$('#notification-list .unread').empty().append(notElement).removeClass('unread');
 } else {
-    $('#message-nav-links').detach().appendTo('#notification-list');
+    $('#notification-list').empty().append(notElement);
+    
+    if(document.URL.match(/\/\d+/) == null || document.URL.match(/\/\d+/)[0] == '/0') {
+        $('#message-nav-links').remove();
+        $('#notification-list').append($('<div id="message-nav-links"><a class="older" href="/messages/1">&laquo Older messages</a></div>'));
+    } else {
+        $('#message-nav-links').detach().appendTo('#notification-list');
+    }
 }

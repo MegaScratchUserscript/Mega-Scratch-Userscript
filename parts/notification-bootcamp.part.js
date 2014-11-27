@@ -5,23 +5,63 @@ msuParts["notificationbootcamp"] = function (ScratchUserscript) {
 
 	var isEnabled = ScratchUserscript.isPartEnabled("notificationbootcamp");
 
-	settingsDlg.append("<i>No additional settings (to disable this, use the checkbox in the left section).</i>");
+	var settings = {newMessagesOnly:true};
+	var labels = {
+		newMessagesOnly:"Organize new messages only"
+	};
+	settings = ScratchUserscript.readSetting("notificationbootcamp", "settings", settings);
+	
+	updateChanges = function(){
+		for(x in settings){
+			if($("#msu-not"+x+"btn").is(":checked")){
+				settings[x] = true;
+			} else {
+				settings[x] = false;
+			}
+		}
+		ScratchUserscript.writeSetting("notificationbootcamp", "settings", settings);
+	};
+	
+	for(x in settings){ // much more concise than adding individual settings one by one I would say
+		settingsDlg.append("<input type='checkbox' id='msu-not"+x+"btn' /> \
+			<label for='msu-not"+x+"btn' \
+			style='display: inline;margin-right:1em;'>\
+			"+labels[x]+"</label><br/>");
+		if(settings[x]) $("#msu-not"+x+"btn").attr("checked", "checked");
+	}
+	
+	settingsDlg.find("input").bind("change", updateChanges);
+	settingsDlg.find("textarea").bind("cut paste keyup", updateChanges);
 
 	if (!isEnabled)
 		return;
 
 	// begin actual script
-	var css1 = "<style>#notification-list li {padding: .7em 5px; margin: 0 0 2px 10px !important;} .unread{border-radius: 5px; background-color: #eed;}";
-	var css2 = ".notarrow {position: relative; right: 20px; color: #888; cursor: default; transition: all .4s; clear: both; display: inline-block; width: 0;}";
-	var css3 = ".nshow .notarrow {-webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg);-o-transform: rotate(90deg); transform: rotate(90deg);}";
-	var css4 = ".notshowhide {margin-left: 11px !important; border-left: 1px solid #ccb; padding-left: 2px;";
-	var css5 = "display: none;} .unreadcount {float: right; color: #aa9; background: white; margin: 10px 10px 0 5px; padding: 0 5px; border-radius: 3px;";
-	var css6 = "font-weight: bold;} #notification-list {margin-top: 20px} #notification-list .notshowhide li {margin-left: 0 !important;}</style>";
-	var notStyle = $(css1 + css2 + css3 + css4 + css5 + css6);
+	///////CSS first
+	var notStyle = "<style>"
+		 + "#notification-list li {padding: .7em 5px; margin: 0 0 2px 10px !important;}"
+		 + ".unread{border-radius: 5px; background-color: #eed;}"
+		 + ".notarrow {position: relative; right: 20px; color: #888; cursor: default; transition: all .4s; clear: both; display: inline-block; width: 0;}"
+		 + ".nshow .notarrow {-webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg);-o-transform: rotate(90deg); transform: rotate(90deg);}"
+		 + ".notshowhide {margin-left: 11px !important; border-left: 1px solid #ccb; padding-left: 2px; display: none;}"
+		 + ".unreadcount {float: right; color: #ccb; background: white; margin: 10px 10px 0 5px; padding: 0 5px; border-radius: 3px; font-weight: bold;}"
+		 + "#notification-list {margin-top: 20px}"
+		 + "#notification-list .notshowhide li {margin-left: 0 !important;}"
+		 + "</style>";
 	$('head').append(notStyle);
-	var notArray = new Array();
-	$('#notification-list li').each(function (index, value) {
 
+	///////now JS
+	var notNewMessagesOnly = settings.newMessagesOnly; //when on, only sort unread messages. When off, sort all messages.
+
+	var notArray = new Array();
+	var notlist;
+	if (notNewMessagesOnly) {
+		notlist = '#notification-list .unread li';
+	} else {
+		notlist = '#notification-list li';
+	}
+
+	$(notlist).each(function (index, value) {
 		var notTime = $(value).find('.time');
 		var dateTCL = $(value).parent().children().first().text();
 		dateTCL = dateTCL.substring(0, 1).toLowerCase() + dateTCL.substring(1);
@@ -52,7 +92,11 @@ msuParts["notificationbootcamp"] = function (ScratchUserscript) {
 				notGroupExists = true;
 				var notObj = new Object();
 				notObj.html = $(value);
-				notObj.class = $(value).parent().attr('class');
+				if (notNewMessagesOnly) {
+					notObj.class = 'unread';
+				} else {
+					notObj.class = $(value).parent().attr('class');
+				}
 				if (notObj.class == 'unread') {
 					notArray[i2].nots.unreadcount++;
 				}
@@ -66,15 +110,29 @@ msuParts["notificationbootcamp"] = function (ScratchUserscript) {
 			notGroup.nots = new Array();
 			notGroup.nots[0] = new Object();
 			notGroup.nots[0].html = $(value);
-			notGroup.nots[0].class = $(value).parent().attr('class');
-			notGroup.nots.unreadcount = (notGroup.nots[0].class == 'unread' ? 1 : 0);
+			if (notNewMessagesOnly) {
+				notGroup.nots[0].class = 'unread';
+				notGroup.nots.unreadcount = 1;
+			} else {
+				notGroup.nots[0].class = $(value).parent().attr('class');
+				notGroup.nots.unreadcount = (notGroup.nots[0].class == 'unread' ? 1 : 0);
+			}
 			notArray.push(notGroup);
 		}
 	});
 
-	var notElement = $('<ul id="grouper-container"/>');
+	var notElement = $('<ul id="notContainer"/>');
 
-	for (i = 0; i < notArray.length - 1; i++) { //there's an extra notif in there for some reason that's like "please be respectful when commenting"
+	var notForLength;
+	if (notNewMessagesOnly) {
+		notForLength = notArray.length;
+		if (notForLength > 0) {
+			notElement.append('<h3>New</h3>');
+		}
+	} else {
+		notForLength = notArray.length - 1;
+	}
+	for (i = 0; i < notForLength; i++) { //there's an extra notif in there for some reason that's like "please be respectful when commenting"
 		if (notArray[i].nots.length == 1) {
 			notArray[i].nots[0].html.addClass(notArray[i].nots[0].class);
 			notElement.append(notArray[i].nots[0].html);
@@ -98,17 +156,23 @@ msuParts["notificationbootcamp"] = function (ScratchUserscript) {
 				list.append(notArray[i].nots[i2].html);
 			}
 			showhide.append(list);
-			if (notArray[i].nots.unreadcount > 0) {
+			if (!notNewMessagesOnly && notArray[i].nots.unreadcount > 0) {
 				showhide.prepend('<span class="unreadcount">' + notArray[i].nots.unreadcount + '</span>');
 			}
 			notElement.append(showhide);
 		}
 	}
-	$('#notification-list').empty().append(notElement);
-	if (document.URL.match(/\/\d+/) == null || document.URL.match(/\/\d+/)[0] == '/0') {
-		$('#message-nav-links').remove();
-		$('#notification-list').append($('<div id="message-nav-links"><a class="older" href="/messages/1">&laquo Older messages</a></div>'));
+
+	if (notNewMessagesOnly) {
+		$('#notification-list .unread').empty().append(notElement).removeClass('unread');
 	} else {
-		$('#message-nav-links').detach().appendTo('#notification-list');
+		$('#notification-list').empty().append(notElement);
+
+		if (document.URL.match(/\/\d+/) == null || document.URL.match(/\/\d+/)[0] == '/0') {
+			$('#message-nav-links').remove();
+			$('#notification-list').append($('<div id="message-nav-links"><a class="older" href="/messages/1">&laquo Older messages</a></div>'));
+		} else {
+			$('#message-nav-links').detach().appendTo('#notification-list');
+		}
 	}
 };
