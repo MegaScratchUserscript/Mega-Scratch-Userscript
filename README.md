@@ -16,4 +16,5 @@ A collab with:
  - davidkt
  - NickyNouse
  - GrannyCookies
+ - SzAmmi
  - And anyone else who is willing to help! :)
