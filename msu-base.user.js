@@ -3,7 +3,9 @@
 // @author		MegaScratchUserscript (collab with some Scratch ATers: https://github.com/MegaScratchUserscript/Mega-Scratch-Userscript#-mega-scratch-userscript)
 // @description	A mega userscript with tons of epic uses!
 // @include		http://scratch.mit.edu/*
+// @include		https://scratch.mit.edu/*
 // @include		http://wiki.scratch.mit.edu/*
+// @include		https://wiki.scratch.mit.edu/*
 // @version		1.1.0
 // @grant		unsafeWindow
 // @grant		GM_getResourceText
