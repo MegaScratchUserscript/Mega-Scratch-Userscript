@@ -112,7 +112,7 @@ msuParts["scratchyStuff"] = function(ScratchUserscript){
 			//Download
 			if(settings.download){
 				$('#see-inside').parent().before($(
-					'<div class="button" style="width:130px;line-height:0px;"><img src="http://i.imgur.com/INmHsg1.png"><span style="left:100px;top:11px;position:absolute;">Download</span></div>'
+					'<div class="button" style="width:100px;line-height:0px;"><img src="http://i.imgur.com/INmHsg1.png"><span style="left:90px;top:11px;position:absolute;">Download</span></div>'
 					).click(unsafeWindow.JSdownloadProject));
 				$('#see-inside').parent().css('display', 'inline-block');
 			}
