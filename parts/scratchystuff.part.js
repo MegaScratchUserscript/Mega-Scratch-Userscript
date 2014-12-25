@@ -8,6 +8,8 @@ msuParts["scratchyStuff"] = function(ScratchUserscript){
 	var settings = {download: true, exts: true, assets: true, selfRemix:true};
 	var labels = {
 		download: "Enable project download button",
+		diff: "Enable remix difference viewer",
+		links: "Enable Scratchblocks and Phosphorus button",
 		exts: "Enable extensions in projects",
 		assets: "Enable loading assets from URL",
 		selfRemix: "Enable self-remixing"
@@ -108,13 +110,47 @@ msuParts["scratchyStuff"] = function(ScratchUserscript){
 
 	if (username) {
 		if (ScratchUserscript.getPageType().type == "project") {
+			// Editor "Scratchy Stuff" button
 			createButton();
-			//Download
+			
+			// Download Button
 			if(settings.download){
 				$('#see-inside').parent().before($(
 					'<div class="button" style="width:100px;line-height:0px;"><img src="http://i.imgur.com/INmHsg1.png"><span style="left:90px;top:11px;position:absolute;">Download</span></div>'
 					).click(unsafeWindow.JSdownloadProject));
 				$('#see-inside').parent().css('display', 'inline-block');
+			}
+			
+			// Phosperous/Scratchblocks buttons Buttons
+			var currenthref = window.location.pathname.slice(10, -1);
+			if(settings.scratchblocks){
+				/****** PHOSPHORUS & SCRATCHBLOCKS ******/
+				var phosp = $('<a/>');
+				phosp.attr('href', 'http://phosphorus.github.io/#' + currenthref);
+				phosp.append('<div class="button" style="padding: 0 10px;">Phosphorus</div>');
+				 
+				var sblocks = $('<a/>');
+				sblocks.attr('href', 'http://blob8108.github.io/scratchblocks2/generator/#project=' + currenthref);
+				sblocks.append('<div class="button" style="padding: 0 10px;">Scratchblocks</div>');
+				 
+				var pbuttons = $('<div/>');
+				pbuttons.addClass('buttons');
+				pbuttons.css('display', 'inline-block');
+				pbuttons.append(phosp).append(sblocks);
+				$('#stats .stats').prepend(pbuttons);
+			}
+			
+			// Differences between remixes
+			if(settings.diff) {
+				if($('#remix-history').length > 0) {
+				    $('#remix-history li').each(function (index, value) {
+				        var link2 = $(value).find('a').attr('href').slice(10, -1);
+				        var difflink = $('<a/>');
+				        difflink.attr('href', 'http://blob8108.github.io/scratchblocks2/diff/#' + currenthref + '+' + link2);
+				        difflink.append('(diff)');
+				        $('#remix-history li').eq(index).find('.attribute').append(' ').append(difflink);
+				    });
+				}
 			}
 		}
 	}
