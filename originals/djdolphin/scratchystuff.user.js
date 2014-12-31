@@ -37,7 +37,6 @@ var extPresets = {
   'Text to Speech Simple': {url: 'https://raw.githubusercontent.com/LLK/scratch-extension-docs/master/text_to_speech_simple_extension.js', author: 'sdg1'},
   'Weather Extension': {url: 'https://raw.githubusercontent.com/LLK/scratch-extension-docs/master/weather_extension.js', author: 'sdg1'},
   'ScratchExt: {url: 'http://stefanbates.com/library/import.js', author: 'GrannyCookies'}
-  'Browser Info and Language': {url: 'http://andrewjcole.weebly.com/uploads/8/0/9/8/8098232/browser-info-and-language.js', author: 'andrewjcole'},
 };
 //Thanks, Thepuzzlegame!
 
