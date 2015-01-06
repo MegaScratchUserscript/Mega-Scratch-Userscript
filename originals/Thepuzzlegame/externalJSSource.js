@@ -20,10 +20,7 @@ $('#load-with-flash').each(function() {
 
 $( ".active" ).append( '<div id="load-with-pho" class="action tooltip bottom" style="" onclick="loadPhos()";><span class="hovertext"><span class="arrow"></span>Load this project with Phosphorus</span><span>Phosphorus</span></div>' );
 
+$( ".phosphorus" ).remove();
 $( ".buttons" ).show();
 $( ".player" ).show();
-var script = document.createElement('script');
-script.src = 'https://phosphorus.github.io/embed.js?id=' + Scratch.INIT_DATA.PROJECT.model.id + '&auto-start=true&light-content=false';
-var first = document.getElementsByClassName('player')[0];
-first.parentNode.insertBefore(script, first);
 }
