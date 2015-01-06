@@ -1,11 +1,3 @@
-// ==UserScript==
-// @name        PhosphorusLoader
-// @namespace   pl
-// @include     http://scratch.mit.edu/projects/*/*
-// @version     0.1
-// @grant       none
-// ==/UserScript==
-
 $( ".buttons" ).remove();
 $( ".player" ).empty();
 var script = document.createElement('script');
