@@ -1,5 +1,5 @@
 function loadPhos() {
-$('#load-with-flash').each(function() {
+$('#load-with-pho').each(function() {
     $(this).remove();
 });
 
@@ -14,7 +14,7 @@ first.parentNode.insertBefore(script, first);
 }
 
 function loadNorm() {
-$('#load-with-pho').each(function() {
+$('#load-with-flash').each(function() {
     $(this).remove();
 });
 
