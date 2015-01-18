@@ -1,0 +1,36 @@
+<html>
+<head>
+<script type="text/javascript" src='http://code.jquery.com/jquery-latest.min.js'></script>
+<script>
+
+var username = prompt("What User?");
+var page=1;
+
+function load( e ) {
+	$.get( "http://scratch.mit.edu/users/" + username + "/followers/?page=1", loaded );
+}
+
+function loaded( data ) {
+	var $dom = $( data );
+	var 
+
+$users = $dom.find('span.title').children();
+	var $out = $('#result');
+	
+	for (var i=0; i<$users.length; i++) {
+		var user = $users[i].text.trim
+
+();
+		$out.prepend( user+'<br>' );
+	}
+
+	page++;
+	$.get( "http://scratch.mit.edu/users/" + username + "/followers/?page="+page, loaded );
+};
+
+</script>
+</head>
+<body onload="load(event);">
+<div id='result'></div>
+</body>
+</html>
