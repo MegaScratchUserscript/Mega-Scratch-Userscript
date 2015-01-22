@@ -31,6 +31,7 @@
 // @require		parts/profileenhancer.part.js
 // @require		parts/wikilink.part.js
 // @require		parts/scratchtheme.part.js
+// @require		parts/spoiler.part.js
 // ==/UserScript==
 
 // I called this base.user.js in case this is the main script
