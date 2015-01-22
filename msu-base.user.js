@@ -6,7 +6,7 @@
 // @include		https://scratch.mit.edu/*
 // @include		http://wiki.scratch.mit.edu/*
 // @include		https://wiki.scratch.mit.edu/*
-// @version		1.1.1
+// @version		1.1.0
 // @grant		unsafeWindow
 // @grant		GM_getResourceText
 // @grant		GM_addStyle
@@ -31,11 +31,12 @@
 // @require		parts/profileenhancer.part.js
 // @require		parts/wikilink.part.js
 // @require		parts/scratchtheme.part.js
+// @require		parts/spoiler.part.js
 // ==/UserScript==
 
 // I called this base.user.js in case this is the main script
 var ScratchUserscript = {
-    MODE_DEV: true, // change to false in the release; use this flag to print data to console for debug, etc
+    MODE_DEV: false, // change to false in the release; use this flag to print data to console for debug, etc
 	_settingsHTML: $("<div id='msu-settings-dialog' title='MegaScratchUserscript Settings'></div>"),
 	_partsEnabled: {},
 	_init: function(){
