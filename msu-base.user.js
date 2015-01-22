@@ -6,7 +6,7 @@
 // @include		https://scratch.mit.edu/*
 // @include		http://wiki.scratch.mit.edu/*
 // @include		https://wiki.scratch.mit.edu/*
-// @version		1.1.0
+// @version		1.1.1
 // @grant		unsafeWindow
 // @grant		GM_getResourceText
 // @grant		GM_addStyle
