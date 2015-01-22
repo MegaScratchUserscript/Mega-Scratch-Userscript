@@ -10,13 +10,13 @@ $(document).ready(function() {
 		$(this).remove();
 	});
 	//This is the [color=spoiler] tag scripts
-	$('<a class="revealTag">Open spoilers &gt;&gt;</a> ').insertBefore("span[style='color:spoiler']");
+	/*$('<a class="revealTag">Open spoilers &gt;&gt;</a> ').insertBefore("span[style='color:spoiler']");
 	
 	$("span[style='color:spoiler']").hide();
 	
 	$("a.revealTag").click(function(){
 		$(this).parents("div").children("span").fadeIn(2500);
 		$(this).remove();
-	});
+	});*/
 
 });
