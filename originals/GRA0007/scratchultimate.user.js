@@ -8,9 +8,6 @@
 // @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
 // @grant        none
 // ==/UserScript==
-var $projName = $('.project-name');
-$('.player .title').css('text-align', 'center');
-$projName.html($projName.html().trim()); //Make sure no whitespaces interefere with centering
 
 if(document.URL.indexOf("mystuff/") >= 0){ 
     waitForKeyElements ("#tabs", appendSidebarItems);
@@ -39,9 +36,12 @@ function appendSidebarItems(jNode) {
 }
 
 function liveFeaturedProject(jNode) {
+    var $projName = $('.project-name');
+    $('.player .title').css('text-align', 'center');
+    $projName.html($projName.html().trim()); //Make sure no whitespaces interefere with centering
+    
     jNode.remove();
     projID = Scratch.INIT_DATA.PROFILE.featuredProject.id;
-    usid = Scratch.INIT_DATA.PROFILE.featuredProject.creator;
     
     $( ".stage" ).append( "<div style='overflow: hidden; height: 216px;' id='applet'><iframe style='margin-top: -25px;' allowtransparency='true' width='282' height='237' frameborder='0' allowfullscreen=''></iframe></div>" );
 }
