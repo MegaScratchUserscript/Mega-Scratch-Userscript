@@ -8,13 +8,27 @@
 // @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
 // @grant        none
 // ==/UserScript==
-
 if(document.URL.indexOf("mystuff/") >= 0){ 
     waitForKeyElements ("#tabs", appendSidebarItems);
 }
 
-if(document.URL.indexOf("users/") >= 0){ 
+if(document.URL.indexOf("users/") >= 0){
     waitForKeyElements ("#featured-project", liveFeaturedProject);
+}
+
+function appendSidebarItems(jNode) {
+    jNode.append( "<li data-tab='myTopics'><a href='http://scratch.mit.edu/discuss/search/?action=show_user&show_as=topics'>My Topics</a></li>" );
+}
+
+function liveFeaturedProject(jNode) {
+    var $projName = $('.project-name'),
+        projID = Scratch.INIT_DATA.PROFILE.featuredProject.id;
+    $('.player .title').css('text-align', 'center');
+    $projName.html($projName.html().trim()); //Make sure no whitespaces interefere with centering
+    
+    jNode.remove();
+    
+    $( ".stage" ).append( "<div style='overflow: hidden; height: 216px;' id='applet'><iframe style='margin-top: -25px;' allowtransparency='true' width='282' height='237' frameborder='0' allowfullscreen=''></iframe></div>" );
     
     $('.stage iframe').load(function(){
         var is404 = $(this).contents().find('#page-404').length > 0;
@@ -25,23 +39,8 @@ if(document.URL.indexOf("users/") >= 0){
         	$(this).attr('src', 'http://phosphorus.github.io/app.html?id=' + projID);
         }
         else if($(this).attr('src').indexOf('http://scratch.mit.edu/projects/embed/') > -1) {
-            setTimeout(function(){$('.stage iframe').attr('height', '238')}, 200);
+            setTimeout(function(){$('.stage iframe').attr('height', '238');}, 200);
         }
     });
     $('.stage iframe').attr("src", "http://scratch.mit.edu/projects/embed/" + projID + "/?autostart=true");
-}
-
-function appendSidebarItems(jNode) {
-    jNode.append( "<li data-tab='myTopics'><a href='http://scratch.mit.edu/discuss/search/?action=show_user&show_as=topics'>My Topics</a></li>" );
-}
-
-function liveFeaturedProject(jNode) {
-    var $projName = $('.project-name');
-    $('.player .title').css('text-align', 'center');
-    $projName.html($projName.html().trim()); //Make sure no whitespaces interefere with centering
-    
-    jNode.remove();
-    projID = Scratch.INIT_DATA.PROFILE.featuredProject.id;
-    
-    $( ".stage" ).append( "<div style='overflow: hidden; height: 216px;' id='applet'><iframe style='margin-top: -25px;' allowtransparency='true' width='282' height='237' frameborder='0' allowfullscreen=''></iframe></div>" );
 }
