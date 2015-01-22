@@ -9,14 +9,4 @@ $(document).ready(function() {
 		$(this).parents("div").children(".post_body_html:contains('spoiler'), .post_body_html:contains('Spoiler'), .post_body_html:contains('SPOILER')").fadeIn(2500);
 		$(this).remove();
 	});
-	//This is the [color=spoiler] tag scripts
-	/*$('<a class="revealTag">Open spoilers &gt;&gt;</a> ').insertBefore("span[style='color:spoiler']");
-	
-	$("span[style='color:spoiler']").hide();
-	
-	$("a.revealTag").click(function(){
-		$(this).parents("div").children("span").fadeIn(2500);
-		$(this).remove();
-	});*/
-
 });
