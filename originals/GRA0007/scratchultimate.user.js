@@ -3,16 +3,22 @@
 // @version      0.2.1
 // @description  Useful Stuff
 // @author       GRA0007
+// @contributor  TheGameBuilder
 // @match        http://scratch.mit.edu/*
 // @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
 // @grant        none
 // ==/UserScript==
+var $projName = $('.project-name');
+$('.player .title').css('text-align', 'center');
+$projName.html($projName.html().trim()); //Make sure no whitespaces interefere with centering
+
 if(document.URL.indexOf("mystuff/") >= 0){ 
     waitForKeyElements ("#tabs", appendSidebarItems);
 }
 
 if(document.URL.indexOf("users/") >= 0){ 
     waitForKeyElements ("#featured-project", liveFeaturedProject);
+    
     $('.stage iframe').load(function(){
         var is404 = $(this).contents().find('#page-404').length > 0;
         if(is404) {
@@ -22,7 +28,7 @@ if(document.URL.indexOf("users/") >= 0){
         	$(this).attr('src', 'http://phosphorus.github.io/app.html?id=' + projID);
         }
         else if($(this).attr('src').indexOf('http://scratch.mit.edu/projects/embed/') > -1) {
-            setTimeout(function(){$('.stage iframe').attr('height', '238')}, 100);
+            setTimeout(function(){$('.stage iframe').attr('height', '238')}, 200);
         }
     });
     $('.stage iframe').attr("src", "http://scratch.mit.edu/projects/embed/" + projID + "/?autostart=true");
