@@ -133,7 +133,10 @@ msuParts["profileEnhancer"] = function (ScratchUserscript) {
 			        	$(this).attr('src', 'http://phosphorus.github.io/app.html?id=' + projID);
 			        }
 			        else if($(this).attr('src').indexOf('http://scratch.mit.edu/projects/embed/') > -1) {
-			            setTimeout(function(){$('.stage iframe').attr('height', '238');}, 200);
+			            setInterval(function(){
+			                $('.stage iframe').attr('height', '239');
+			                $('.stage iframe').attr('height', '238');
+			            }, 500);
 			        }
 			 });
 			 $('.stage iframe').attr("src", "http://scratch.mit.edu/projects/embed/" + projID + "/?autostart=true");
