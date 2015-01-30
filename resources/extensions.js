@@ -2,6 +2,7 @@ unsafeWindow.extPresets = {
   'Mesh': {url: 'https://cdn.rawgit.com/bobbybee/mesh-2.0/master/ext.js', author: 'bobbybee'},
   'Scratch Cloud': {url: 'https://dl.dropboxusercontent.com/u/6274273/web/scratchcloud/icon.js', author: 'MathWizz'},
   //'Image Stuff': {url: 'http://scratch.cf/extensions/imagestuff.js', author: 'djdolphin'},
+  'CookieVars': {url:'http://git.io/FDQ7', author: 'djdolphin'},
   'Cool helpful things extension': {url: 'http://textuploader.com/07bg/raw', author: 'PullJosh'},
   'More Math': {url: 'http://savakamyimages00000.weebly.com/uploads/6/4/5/3/6453739/more_math.js', author: 'savaka'},
   'Javascript Dialogs': {url: 'http://savakamyimages00000.weebly.com/uploads/6/4/5/3/6453739/javascript_dialogs.js', author: 'savaka'},
