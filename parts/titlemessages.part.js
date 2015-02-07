@@ -49,7 +49,7 @@ msuParts["titlemessages"] = function (ScratchUserscript) {
 	var link = $('<link id="favicon" rel="icon" type="image/x-icon" href="/favicon.ico" />');
 	link.appendTo(document.head);
 	setInterval(function () {
-		if ($(".notificationsCount").length == 0 || isNaN(x = parseInt($(".notificationsCount").html())) || x == 0) {
+		if ($(".notificationsCount").hasClass("none")) {
 			if (settings.titlemsg)
 				document.title = basetitle;
 			if (settings.fav) {
@@ -59,7 +59,7 @@ msuParts["titlemessages"] = function (ScratchUserscript) {
 				});
 			}
 		} else {
-			var tf = ""+x;
+			var tf = $(".notificationsCount").html();
 			if(tf.length > 2) tf="99+";
 			
 			if (settings.titlemsg)
