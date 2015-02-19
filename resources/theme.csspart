@@ -63,7 +63,7 @@ div#footer a {
 	font-weight: bold;
 }
 /* top nav */
-div#pagewrapper #topnav, header {
+div#pagewrapper #topnav, div#pagewrapper #topnav .innerwrap, header {
     background-color: $main-color !important;
 }
 div#pagewrapper #topnav  a{
