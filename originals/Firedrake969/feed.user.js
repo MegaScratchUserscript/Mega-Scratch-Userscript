@@ -13,7 +13,7 @@ var hide = ["remix", "following", "curator", "manager"];
 $(document).ready(function () {
 
     if ($.inArray('love', hide) > -1) {
-        $("#activity-feed li div:contains('loved')").css("display", "none");
+        $("#activity-feed li:contains('loved')").css("display", "none");
     }
 
     if ($.inArray('share', hide) > -1) {
