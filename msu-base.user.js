@@ -7,6 +7,7 @@
 // @include		http://wiki.scratch.mit.edu/*
 // @include		https://wiki.scratch.mit.edu/*
 // @version		1.1.0
+// @website     https://megascratchuserscript.github.io
 // @grant		unsafeWindow
 // @grant		GM_getResourceText
 // @grant		GM_addStyle
@@ -14,7 +15,7 @@
 // @grant		GM_setValue
 // @icon		https://cdn.rawgit.com/MegaScratchUserscript/Mega-Scratch-Userscript/master/resources/icon.png
 // @resource	settingshtml resources/settings.htmlpart
-// @resource	settingscss resources/settings.css
+// @resource	settingscss2 resources/settings2.css
 // @resource	theme resources/theme.csspart
 // @require		https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
 // @require		https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js
@@ -31,11 +32,13 @@
 // @require		parts/profileenhancer.part.js
 // @require		parts/wikilink.part.js
 // @require		parts/scratchtheme.part.js
+// @require		parts/spoiler.part.js
+// @require		parts/projectStuff.part.js
 // ==/UserScript==
 
 // I called this base.user.js in case this is the main script
 var ScratchUserscript = {
-    MODE_DEV: false, // change to false in the release; use this flag to print data to console for debug, etc
+    MODE_DEV: true, // change to false in the release; use this flag to print data to console for debug, etc
 	_settingsHTML: $("<div id='msu-settings-dialog' title='MegaScratchUserscript Settings'></div>"),
 	_partsEnabled: {},
 	_init: function(){
@@ -55,7 +58,7 @@ var ScratchUserscript = {
 		ScratchUserscript._settingsHTML.css("display","none").appendTo(document.body).dialog({dialogClass:"jqui-modal", autoOpen: false, width: 800, height: 550});
 		$("#msu-settings-dialog").parent().append('<iframe class="iframeshim" frameborder="0" scrolling="no">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</iframe>');
 		ScratchUserscript._settingsHTML.html(GM_getResourceText("settingshtml"));
-		GM_addStyle(GM_getResourceText("settingscss"));
+		GM_addStyle(GM_getResourceText("settingscss2"));
 		var openSettings = $("<a href='javascript:void(0)'><acronym title='Mega Scratch Userscript'>MSU</acronym> Settings</a>");
 		openSettings.click(function(){
 			ScratchUserscript._settingsHTML.dialog("open");

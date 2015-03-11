@@ -4,7 +4,7 @@
 
 .msu-settings-note {
 	position: absolute;
-	bottom: 10px;
+	bottom: 0px;
 	left: 10px;
 }
 
@@ -35,7 +35,7 @@
     border: 1px solid gray;
     border-bottom: none;
     border-right: none;
-    padding: 10px;
+    padding: 0.3em;
     margin-right: 0;
 	margin-bottom: 0;
     transition: background 0.5s;

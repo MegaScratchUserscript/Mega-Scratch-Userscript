@@ -1,7 +1,7 @@
 msuParts["spoiler"] = function (ScratchUserscript) {
-	var settingsDlg = $("<div></div>");
+	var settingsDlg = $("<div><i>Put [color=spoiler] Hello! [/color] in a forum post to make a spoiler!<br/>Also supports [color=transparent][/color]</i></div>");
 
-	ScratchUserscript.registerPart("Forum Spoilers", "Put [color=spoiler] Hello! [/color] in a forum post to make a spoiler!", settingsDlg);
+	ScratchUserscript.registerPart("Forum Spoilers", "Adds support for spoilers to forums.", settingsDlg);
 
 	var isEnabled = ScratchUserscript.isPartEnabled("spoiler");
 
@@ -9,19 +9,26 @@ msuParts["spoiler"] = function (ScratchUserscript) {
 		// actual script
 		$(document).ready(function() {
 			$('.postright span').each(function(index) {
-				if($(this).attr('style')==='color:spoiler') {
-					$('<a class="revealTag" id="openspoiler' + index + '">Open spoiler &gt;&gt;</a> ').insertBefore(this);
+				if($(this).attr('style')==='color:spoiler' || $(this).attr('style')==='color:transparent') {
 					var make = $(this).html();
-					$(this).html('<span id="spoiler' + index + '">' + make + '</span>').hide();
+					if($(this).attr('style')==='color:transparent'){
+						$(this).css("color", "initial");
+					}
+					$(this).html('<blockquote><span class="bb-quote-author revealTag spoiler_closed" id="openspoiler'+index+'">'+
+						"Open Spoiler &gt;&gt;"+
+						'</span><div id="spoiler' + index + '" style="display:none">' + make + '</div></blockquote>');
 				}
 			});
 	
-		    $("a.revealTag").click(function() {
+		    $(".revealTag").css({"cursor":"pointer","text-decoration":"underline"}).click(function() {
 		    	var thing = $(this).attr('id').substring(11, $(this).attr('id').length);
-	
-		        $( '#spoiler' + thing ).parent().css('display', 'inherit');
-	
-		        $(this).remove();
+				if($(this).hasClass("spoiler_closed")){
+					$(this).html("Close Spoiler &lt;&lt;").removeClass("spoiler_closed");
+					$('#spoiler' + thing).slideDown();
+				} else {
+					$(this).html("Open Spoiler &gt;&gt;").addClass("spoiler_closed");
+					$('#spoiler' + thing).slideUp();
+				}
 		    });
 		});
 	}
