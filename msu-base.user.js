@@ -6,8 +6,8 @@
 // @include		https://scratch.mit.edu/*
 // @include		http://wiki.scratch.mit.edu/*
 // @include		https://wiki.scratch.mit.edu/*
-// @version		1.1.0
-// @website     https://megascratchuserscript.github.io
+// @version		1.2.0
+// @website		https://megascratchuserscript.github.io
 // @grant		unsafeWindow
 // @grant		GM_getResourceText
 // @grant		GM_addStyle
@@ -17,6 +17,7 @@
 // @resource	settingshtml resources/settings.htmlpart
 // @resource	settingscss2 resources/settings2.css
 // @resource	theme resources/theme.csspart
+// @run-at		document-end
 // @require		https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
 // @require		https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js
 // @require		resources/waitForKeyElements.js
@@ -38,7 +39,7 @@
 
 // I called this base.user.js in case this is the main script
 var ScratchUserscript = {
-    MODE_DEV: true, // change to false in the release; use this flag to print data to console for debug, etc
+    MODE_DEV: false,
 	_settingsHTML: $("<div id='msu-settings-dialog' title='MegaScratchUserscript Settings'></div>"),
 	_partsEnabled: {},
 	_init: function(){
@@ -213,4 +214,20 @@ var ScratchUserscript = {
 	}
 };
 
-$(document).ready(ScratchUserscript._init);
+// firefox hax -_-
+// it's almost as bad as IE
+$(document).ready(function(){
+	var interval;
+	interval = setInterval(function(){
+		if($(".user-nav").html() != null) {
+			clearInterval(interval);
+			ScratchUserscript._init();
+			if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+				ScratchUserscript._settingsHTML.dialog("open");
+				var height = $("#msu-settings-dialog").height() - 30;
+				ScratchUserscript._settingsHTML.dialog("close");
+				$(".msu-settings-content").attr("style","height:"+height+"px");
+			}
+		}
+	}, 200);
+});
