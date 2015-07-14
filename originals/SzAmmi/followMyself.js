@@ -1,4 +1,12 @@
 //Run on: *//scratch.mit.edu/users/*/
+// ==UserScript==
+// @name         Follow myself for Scratch
+// @version      1.0
+// @description  Do You want to follow myself?
+// @author       SzAmmi
+// @match        *//scratch.mit.edu/users/*/
+// @grant        none
+// ==/UserScript==
 
 url = window.location.href;
 yourUsername = Scratch.INIT_DATA.LOGGED_IN_USER.model.username;
