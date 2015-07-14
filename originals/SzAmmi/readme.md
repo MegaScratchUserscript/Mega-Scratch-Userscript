@@ -4,4 +4,4 @@
 All my extensions:
  - follow myself.
 
-I know, it's a lot :D
+I know, it's a lot of userscripts :D
