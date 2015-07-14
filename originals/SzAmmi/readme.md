@@ -1,8 +1,7 @@
 > # Hello!
 > Here I will upload my new extensions.
 
-DONE:
+All my extensions:
  - follow myself.
 
-TODO:
- - ?
+I know, it's a lot of :D
