@@ -1,4 +1,3 @@
-//Run on: *//scratch.mit.edu/users/*/
 // ==UserScript==
 // @name         Follow myself for Scratch
 // @version      1.0
