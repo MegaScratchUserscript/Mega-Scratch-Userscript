@@ -1,7 +1,9 @@
 Hello!
 
-Here I will upload my new extension.
+Here I will upload my new extensions.
+
+DONE:
+ - follow myself.
 
 TODO:
- - follow myself
- - and more!
+ - ?
