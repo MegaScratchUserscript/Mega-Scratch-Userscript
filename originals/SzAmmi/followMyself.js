@@ -7,12 +7,11 @@
 // @grant        none
 // ==/UserScript==
 
+url = window.location.href;
 yourUsername = Scratch.INIT_DATA.LOGGED_IN_USER.model.username;
 usernameFromURL = url.substring(url.lastIndexOf("users/")+6,url.lastIndexOf("/"));
 
 if (yourUsername == usernameFromURL) {
-  url = window.location.href;
-  
   if (typeof(localStorage['following_myself']) === "undefined") { localStorage['following_myself'] = false; }
   divClass = localStorage['following_myself'] == "false" ? "follow-button button notfollowing blue" : "follow-button button following grey";
   dataControl = localStorage['following_myself'] == "true" ? "unfollow" : "follow";
