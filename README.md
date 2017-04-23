@@ -1,8 +1,8 @@
-![logo](http://bluemod.webatu.com/img/MegaScratchUserscript65.png) Mega-Scratch-Userscript
+![logo](https://cdn.rawgit.com/MegaScratchUserscript/Mega-Scratch-Userscript/master/resources/icon.png) Mega-Scratch-Userscript
 =======================
 
 A mega userscript containing a lot of useful features (eventually, hopefully...)  
-See http://scratch.mit.edu/discuss/topic/57450/
+See https://scratch.mit.edu/discuss/topic/57450/
 
 A collab with:
 
@@ -14,7 +14,7 @@ A collab with:
  - [GRA0007](https://github.com/GRA0007)
  - [-PRO-](https://github.com/Krett12)
  - [davidkt](https://github.com/davidkt)
- - [NickyNouse](http://scratch.mit.edu/users/NickyNouse/)
+ - [NickyNouse](https://scratch.mit.edu/users/NickyNouse/)
  - [GrannyCookies](https://github.com/GrannyCookies)
  - [SzAmmi](https://github.com/SzAmmi)
  - [andrewjcole](https://github.com/andrewjcole)
