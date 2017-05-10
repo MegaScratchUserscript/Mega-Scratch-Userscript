@@ -17,7 +17,7 @@ msuParts["wikilink"] = function(ScratchUserscript){
 		
 		if(isEnabled) {
 			settings = ScratchUserscript.readSetting("wikilink", "settings", settings); //Update settings
-			$(".site-nav li a[href='http://wiki.scratch.mit.edu/']").html(settings.name); //Auto-update button
+			$(".site-nav li a[href='https://wiki.scratch.mit.edu/']").html(settings.name); //Auto-update button
 		}
 	};
 	
@@ -28,5 +28,5 @@ msuParts["wikilink"] = function(ScratchUserscript){
 	if(!isEnabled) return;
 	
 	// begin actual script
-	$('.site-nav li:nth-of-type(3)').after("<li><a href='http://wiki.scratch.mit.edu/'>" + settings.name + "</a></li>");
+	$('.site-nav li:nth-of-type(3)').after("<li><a href='https://wiki.scratch.mit.edu/'>" + settings.name + "</a></li>");
 };

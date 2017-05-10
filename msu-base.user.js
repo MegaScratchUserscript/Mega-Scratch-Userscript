@@ -2,9 +2,7 @@
 // @name		Mega Scratch Userscript
 // @author		MegaScratchUserscript (collab with some Scratch ATers: https://github.com/MegaScratchUserscript/Mega-Scratch-Userscript#-mega-scratch-userscript)
 // @description	A mega userscript with tons of epic uses!
-// @include		http://scratch.mit.edu/*
 // @include		https://scratch.mit.edu/*
-// @include		http://wiki.scratch.mit.edu/*
 // @include		https://wiki.scratch.mit.edu/*
 // @version		1.2.0
 // @website		https://megascratchuserscript.github.io
@@ -124,7 +122,7 @@ var ScratchUserscript = {
 	 * @param settings HTML for the part's settings page, if any
 	 */
 	registerPart: function(name, description, settings){
-		// almost verbatim copied from my test JSFiddle: http://jsfiddle.net/a8cewv3u/
+		// almost verbatim copied from my test JSFiddle: https://jsfiddle.net/a8cewv3u/
 		// very messy, should be cleaned up
 		
 		var qualifiedName = name.replace(/[^a-zA-Z\d]/g, "").toLowerCase();

@@ -5,11 +5,13 @@ msuParts["projectStuff"] = function (ScratchUserscript) {
 	
 	var settings = {
 		phosphorus: true,
+		autophosphorus: true,
 		sb2: true,
 		diff: true
 	};
 	var labels = {
 		phosphorus: "Enable phosphorus button",
+		autophosphorus: "Automatically switch to phosphorus",
 		sb2:  "Enable scratchblocks2 generator button",
 		diff: "Enable scratchblocks2 diff button"
 	};
@@ -55,7 +57,7 @@ msuParts["projectStuff"] = function (ScratchUserscript) {
 					var iframe = document.createElement('iframe');
 					iframe.setAttribute('allowfullscreen', true);
 					iframe.setAttribute('allowtransparency', true);
-					iframe.src = 'http://phosphorus.github.io/embed.html?id=' + Scratch.INIT_DATA.PROJECT.model.id + '&auto-start=true&light-content=false';
+					iframe.src = 'https://phosphorus.github.io/embed.html?id=' + Scratch.INIT_DATA.PROJECT.model.id + '&auto-start=true&light-content=false';
 					iframe.width = 482;
 					iframe.height = 393;
 					iframe.style.border = '0';
@@ -72,6 +74,9 @@ msuParts["projectStuff"] = function (ScratchUserscript) {
 					$("#msu-ps-phosphorus-tool").htmk("<span class='arrow'></span>Switch to phosphorus");
 				}
 			});
+			if(settings.autophosphorus){
+				$("#msu-ps-phosphorus").click();
+			}
 		}
 		if(settings.sb2){
 			var btn = $('<div id="msu-ps-sb2" class="action tooltip bottom isflash">'+
@@ -79,7 +84,7 @@ msuParts["projectStuff"] = function (ScratchUserscript) {
 				'<span>Generate code</span></div>');
 			$(".active").append(btn);
 			$("#msu-ps-sb2").click(function(){
-				window.open('http://scratchblocks.github.io/generator/#project='+Scratch.INIT_DATA.PROJECT.model.id, "_blank");
+				window.open('https://scratchblocks.github.io/generator/#project='+Scratch.INIT_DATA.PROJECT.model.id, "_blank");
 			});
 		}
 		if(settings.diff){
@@ -90,7 +95,7 @@ msuParts["projectStuff"] = function (ScratchUserscript) {
 			$("#msu-ps-diff").click(function(){
 				var diff2 = prompt("Other project ID?");
 				if(diff2 == null || diff2 == "") return;
-				window.open('http://scratchblocks.github.io/diff/#'+Scratch.INIT_DATA.PROJECT.model.id+"+"+diff2, "_blank");
+				window.open('https://scratchblocks.github.io/diff/#'+Scratch.INIT_DATA.PROJECT.model.id+"+"+diff2, "_blank");
 			});
 		}
 	}
